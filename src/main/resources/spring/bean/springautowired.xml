@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tool http://www.springframework.org/schema/tool/spring-tool.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- 一、Set()注入：-->
+    <!--配置bean,配置后该类由spring管理-->
+    <!--<bean name="springAction" class="com.example.lcj.spring.bean.InstantiatingBeanstingBeans.method01Set.SpringAction">
+        &lt;!&ndash;(1)依赖注入,配置当前类中相应的属性&ndash;&gt;
+        <property name="springDao" ref="springDao"></property>
+    </bean>
+    <bean name="springDao" class="com.example.lcj.spring.bean.InstantiatingBeanstingBeans.method01Set.SpringDaoImpl"></bean>-->
+
+
+    <!-- 2、构造器注入-->
+    <!--配置bean,配置后该类由spring管理-->
+    <!--<bean name="springAction" class="com.example.lcj.spring.bean.InstantiatingBeanstingBeans.method02Construct.SpringAction">
+        &lt;!&ndash;(2)创建构造器注入,如果主类有带参的构造方法则需添加此配置&ndash;&gt;
+        <constructor-arg ref="springDao"></constructor-arg>
+        <constructor-arg ref="user"></constructor-arg>
+    </bean>
+    <bean name="springDao" id="springDao" class="com.example.lcj.spring.bean.InstantiatingBeanstingBeans.method02Construct.SpringDaoImpl"></bean>
+    <bean name="user" class="com.example.lcj.spring.bean.InstantiatingBeanstingBeans.method02Construct.User"></bean>-->
+
+
+    <!-- 3、静态工厂的方法注入-->
+    <!--
+    *   通过静态工厂创建Bean，是不是听着高大上了？
+    *   顾名思义，咱们把创建Bean的任务交给了静态工厂，而不是构造函数，
+    *   这个静态工厂就是一个Java类，那么使用静态工厂创建Bean咱们又需要添加哪些属性呢？
+    *   我们同样需要在<bean/>元素内添加class属性，上面也说了，静态工厂是一个Java类，那么该class属性指定的就是该工厂的实现类，而不再是Bean的实现类，
+    *   告诉Spring这个Bean应该由哪个静态工厂创建，另外我们还需要添加factory-method属性来指定由工厂的哪个方法来创建Bean实例，
+    *   因此使用静态工厂方法创建Bean实例需要为<bean/>元素指定如下属性：
+    *    class：指定静态工厂的实现类，告诉Spring该Bean实例应该由哪个静态工厂创建（指定工厂地址）
+    *    factory-method:指定由静态工厂的哪个方法创建该Bean实例（指定由工厂的哪个车间创建Bean）
+    *   如果静态工厂方法需要参数，则使用<constructor-arg.../>元素传入
+    -->
+    <!--配置bean,配置后该类由spring管理-->
+    <!-- 定义chinese Bean 由PersonFactory工厂的getPerson方法创建 -->
+<!--    <bean id="chinese" class="com.example.lcj.spring.bean.InstantiatingBeanstingBeans.method03StaticFactory.PersonFactory" factory-method="getPerson">
+        &lt;!&ndash; 为静态工厂的getPerson()方法传参 &ndash;&gt;
+        <constructor-arg value="chinese"/>
+        &lt;!&ndash; 调用setMsg()方法为msg属性注入参数值 &ndash;&gt;
+        <property name="msg" value="我是中国人"/>
+    </bean>
+    &lt;!&ndash; 创建american Bean &ndash;&gt;
+    <bean id="american" class="com.example.lcj.spring.bean.InstantiatingBeanstingBeans.method03StaticFactory.PersonFactory" factory-method="getPerson">
+        <constructor-arg value="american"/>
+        <property name="msg" value="我是美国人"></property>
+    </bean>-->
+
+    <!--4、实例工厂的方法注入： -->
+    <!--
+        咱们再顾名思义一下哈，静态工厂通过class指定静态工厂实现类然后通过相应的方法创建即可，
+        调用实例工厂则需要先创建该工厂的Bean实例，然后引用该实例工厂Bean的id创建其他Bean，
+        在实例工厂中通过factory-bean指定工厂Bean的实例，
+        在调用实例化工厂方法中，不用在<bean/>中指定class属性，
+        因为这时，咱们不用直接实例化该Bean，而是通过调用实例化工厂的方法，
+        创建Bean实例，调用实例化工厂需要为<bean/>指定一下两个属性
+        factory-bean ：该属性指定工厂Bean的id
+        factory-method：该属性指定实例工厂的工厂方法。
+    -->
+    <!-- 配置工厂Bean，class指定该工厂的实现类，该Bean负责产生其他Bean实例 -->
+    <bean id="personFactory" class="com.example.lcj.spring.bean.InstantiatingBeans.method04InstanceFactory.PersonFactory"/>
+    <!-- 由实例工厂Bean的getPerson()方法，创建Chinese Bean， -->
+    <bean id="ch" factory-bean="personFactory" factory-method="getPerson">
+        <!-- 为该方法传入参数为chinese -->
+        <constructor-arg value="chinese"/>
+    </bean>
+    <!-- 由实例工厂Bean的getPerson()方法，创建American Bean， -->
+    <bean id="usa" factory-bean="personFactory" factory-method="getPerson">
+        <constructor-arg value="american"></constructor-arg>
+    </bean>
+
+
+
+</beans>

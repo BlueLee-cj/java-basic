@@ -1,0 +1,16 @@
+package com.example.lcj.spring.aop.aspectj;
+
+/**
+ * Created by zejian on 2017/2/15.
+ * Blog : http://blog.csdn.net/javazejian [原文地址,请尊重原创]
+ */
+public class HelloWord {
+
+    public void sayHello(){
+        System.out.println("hello world !");
+    }
+    public static void main(String args[]){
+        HelloWord helloWord =new HelloWord();
+        helloWord.sayHello();
+    }
+}

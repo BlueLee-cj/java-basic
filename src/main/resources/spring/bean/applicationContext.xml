@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tool http://www.springframework.org/schema/tool/spring-tool.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<!-- init-method：指定初始化的方法
+         destroy-method：指定销毁的方法 -->
+    <bean id="student" class="com.example.lcj.spring.lifecycle.Student" init-method="initStudent" destroy-method="destroyStudent">
+        <property name="name" value="LINJIE"></property>
+    </bean>
+    <!-- 配置bean的后置处理器,不需要id，IoC容器自动识别是一个BeanPostProcessor -->
+    <bean class="com.example.lcj.spring.lifecycle.MyBeanPostProcessor"></bean>
+
+    <!--配置bean,配置后该类由spring管理-->
+    <bean name="springAction" class="com.example.lcj.spring.bean.InstantiatingBeans.method01Set.SpringAction">
+        <!--(1)依赖注入,配置当前类中相应的属性-->
+        <property name="springDao" ref="springDao"></property>
+    </bean>
+    <bean name="springDao" class="com.example.lcj.spring.bean.InstantiatingBeans.method01Set.SpringDaoImpl"></bean>
+
+</beans>

@@ -1,0 +1,22 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 启动@aspectj的自动代理支持-->
+    <aop:aspectj-autoproxy />
+
+   <!-- &lt;!&ndash; 定义目标对象 &ndash;&gt;
+    <bean id="userDaos" class="com.example.lcj.spring.aop.springaop.UserDaoImp" />
+    &lt;!&ndash; 定义aspect类 &ndash;&gt;
+    <bean name="myAspectJ" class="com.example.lcj.spring.aop.springaop.MyAspect"/>
+
+    &lt;!&ndash; 定义aspect类 &ndash;&gt;
+    <bean name="AspectOne_Order" class="com.example.lcj.spring.aop.springaop.AspectOne_Order"/>
+
+    &lt;!&ndash; 定义aspect类 &ndash;&gt;
+    <bean name="AspectTwo_Order" class="com.example.lcj.spring.aop.springaop.AspectTwo_Order"/>-->
+</beans>

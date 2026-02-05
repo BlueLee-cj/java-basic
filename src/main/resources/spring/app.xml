@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tool http://www.springframework.org/schema/tool/spring-tool.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--
+    JoinPoint(连接点，加入点)，如类的初始化前，类的初始化后，类的某个方法调用前，类的某个方法调用后，方法抛出异常后等位置。
+    Spring仅支持方法的JoinPoint
+    PointCut(切点)，每个程序都有多个JoinPoint, 其中我们感兴趣的那个JoinPoint，要下手操作的那个点叫做Pointcut。
+    Advice(增强)，我们找到感兴趣的点(PointCut)之后做什么呢，不管做什么，都是比之前做的事情多了那么一点点，所以可以理解为增强。
+    Target 目标对象，要下手的目标类
+    Weaving (织入)，将Advice添加到Target的具体JoinPoint的过程。-->
+    <bean id="helloWorld" class="com.example.lcj.spring.aop.demo01.HelloWorld"/>
+   <!-- <bean id="timeLog" class="TimeLoggingAop"/>
+    <aop:config>
+        <aop:pointcut id="hello" expression="execution(public * * (..))"></aop:pointcut>
+        <aop:advisor
+                id="timelogAdvisor"
+                advice-ref="timeLog"
+                pointcut-ref="hello"
+        />
+    </aop:config>-->
+</beans>
