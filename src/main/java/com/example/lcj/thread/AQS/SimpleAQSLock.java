@@ -2,7 +2,7 @@ package com.example.lcj.thread.AQS;
 
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 
-public class SimpleLock {
+public class SimpleAQSLock {
 
     private final Sync sync = new Sync();
 
@@ -47,7 +47,7 @@ public class SimpleLock {
     }
 
     public static void main(String[] args) {
-        SimpleLock lock = new SimpleLock();
+        SimpleAQSLock lock = new SimpleAQSLock();
 
         lock.lock();
         try {
