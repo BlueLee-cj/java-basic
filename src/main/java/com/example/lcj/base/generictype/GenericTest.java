@@ -20,11 +20,22 @@ public class GenericTest<T> {
         Integer result = get(first, second);
     }
 
-    public static void main(String[] args) {
+    public static void main2(String[] args) {
         List<String> list1 = new ArrayList<String>();
         List<Integer> list2 = new ArrayList<Integer>();
         System.out.println(list1.getClass() == list2.getClass());
         System.out.println(Arrays.asList(list1.getClass().getTypeParameters()));
 
+    }
+
+    public static void main(String[] args) {
+        // List<? extends Number> list = new ArrayList<Integer>();
+
+        List list = new ArrayList<Integer>();
+
+        list.add(1); // ❌ 编译错误
+        list.add(1.0); // ❌ 编译错误
+
+        System.out.println(list);
     }
 }
