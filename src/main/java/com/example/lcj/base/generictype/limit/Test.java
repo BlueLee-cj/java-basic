@@ -13,7 +13,7 @@ public class Test {
         cat.print();
 
         Demo<Animal> demo3 = new Demo<Animal>(new Animal());
-        // Demo<Integer> demo4 = new Demo<Integer>(1);
+        // JvmStackDemo<Integer> demo4 = new JvmStackDemo<Integer>(1);
         take(demo3);
     }
 
